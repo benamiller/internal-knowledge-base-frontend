@@ -6,8 +6,10 @@ import './MyEditor.css';
 class MyEditor extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {editorState: EditorState.createEmpty()};
-      this.onChange = editorState => this.setState({editorState});
+			this.editorState = props.editorState;
+			this.setEditorState = props.setEditorState;
+      this.state = {editorState: props.editorState};
+			this.onChange = props.onChange;
       this.handleKeyCommand = this.handleKeyCommand.bind(this);
     }
   
@@ -31,7 +33,7 @@ class MyEditor extends React.Component {
       return (
         <>
 					<Editor
-							editorState={this.state.editorState}
+							editorState={this.editorState}
 							handleKeyCommand={this.handleKeyCommand}
 							onChange={this.onChange}
 					/>

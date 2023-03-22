@@ -1,6 +1,8 @@
 const postFunctions = {
 	createNewArticle(articleSubject, articleBody, authorizedRole, isComplete) {
 
+		console.log("POSTING new article");
+
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
@@ -18,7 +20,7 @@ const postFunctions = {
 			redirect: 'follow'
 		};
 
-		fetch("localhost:8080/article", requestOptions)
+		fetch("http://localhost:8080/article", requestOptions)
 			.then(response => response.text())
 			.then(result => console.log(result))
 			.catch(error => console.log('error', error));
