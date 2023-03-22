@@ -5,10 +5,6 @@ import postFunctions from './rest/post';
 import { useState } from 'react';
 import { Editor, EditorState } from 'draft-js';
 
-const handleNewArticleSubmission = () => {
-  postFunctions.createNewArticle("TEST SUBJECT", "TEST BODY AGAIN", "MARKETING", false);
-}
-
 function App() {
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
@@ -17,9 +13,16 @@ function App() {
   return (
     <div className="App">
       <div className="Text-Editor">
-        <MyEditor editorState={editorState} onChange={setEditorState}/>
+        <MyEditor editorState={editorState} setEditorState={setEditorState}/>
       </div>
-      <button onClick={handleNewArticleSubmission}>Button</button>
+      <button onClick={() => postFunctions.createNewArticle(
+          "SUBJECT",
+          editorState.getCurrentContent().getPlainText('\u0001'),
+          "ENGINEER",
+          false
+      )}>
+        Button
+      </button>
       My Editor above
     </div>
   );
