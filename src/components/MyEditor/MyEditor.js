@@ -6,7 +6,7 @@ import './MyEditor.css';
 const MyEditor = (props) => {
 
 	return (
-		<div>Hello</div>
+		<textarea placeholder='Article body'></textarea>
 	)
 }
 

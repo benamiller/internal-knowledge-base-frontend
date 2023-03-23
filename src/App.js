@@ -12,6 +12,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="Authentication">Auth me up</div>
       <div className="Text-Editor">
         <MyEditor editorState={editorState} setEditorState={setEditorState}/>
       </div>

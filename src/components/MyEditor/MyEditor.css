@@ -10,3 +10,13 @@ div.DraftEditor-root {
   div.public-DraftEditor-content {
     height: 100%;
   }
+
+  textarea {
+    width: 50%;
+    height: 200px;
+    resize: none;
+    background-color: black;
+    color: #49eb4e;
+    font-size: 1.1rem;
+    padding: 0.3rem;
+  }
