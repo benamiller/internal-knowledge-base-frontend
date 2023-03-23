@@ -27,9 +27,25 @@ const postFunctions = {
 
 	},
 
+	deleteArticleByID(articleID) {
+
+	},
+
+	setArticleUnread(articleID) {
+
+	},
+
+	setArticleRead(articleID) {
+
+	},
+
 	createNewComment(articleID, commentBody) {
 		console.log("hey");
-	}
+	},
+
+	deleteCommentByID(commentID) {
+
+	},
 }
 
 export default postFunctions;
