@@ -15,7 +15,7 @@ function App() {
   const [articleBody, setArticleBody] = useState('');
 	const [articleSubject, setArticleSubject] = useState('');
 
-  const [articles, setArticles] = useState([]);
+  const [articleList, setArticleList] = useState([]);
   
   const [comments, setComments] = useState([]);
 
@@ -32,7 +32,11 @@ function App() {
   }
 
   const getArticlesForSelectedDepartment = async () => {
-    console.log(await getFunctions.getArticlesByDepartment(selectedDepartment));
+    setArticleList(await getFunctions.getArticlesByDepartment(selectedDepartment));
+  }
+
+  const handleArticleClick = (articleID) => {
+    console.log(articleID);
   }
 
   const handleEditorKeyPress = (event) => {
@@ -76,10 +80,7 @@ function App() {
       </button>
 
       <div className="Articles">
-        {/* <ul>
-        {articles.forEach(a => <li>{a.articleSubject}, {a.articleBody}</li>)}
-        </ul> */}
-
+        {articleList.map(a => <li key={a.articleID} onClick={() => handleArticleClick(a.articleID)}>{a.articleBody}</li>)}
       </div>
     </div>
   );
