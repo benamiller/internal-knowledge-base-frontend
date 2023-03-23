@@ -4,6 +4,7 @@ import MyEditor from './components/MyEditor/MyEditor';
 import postFunctions from './rest/post';
 import { useState } from 'react';
 import { Editor, EditorState } from 'draft-js';
+import Authentication from './components/Authentication/Authentication';
 
 function App() {
   const [editorState, setEditorState] = useState(
@@ -14,16 +15,32 @@ function App() {
 	const [articleSubject, setArticleSubject] = useState('');
 
   const [articles, setArticles] = useState([]);
+  
+  const [comments, setComments] = useState([]);
+
+  const [selectedDepartment, setSelectedDepartment] = useState('ENGINEERING');
+
+  const handleDepartmentChange = (event) => {
+    setSelectedDepartment(event.target.value);
+  }
+
+  const handleEditorKeyPress = (event) => {
+    if (event.key == 'Tab') {
+      event.preventDefault();
+      event.target.value += "    ";
+    }
+  }
 
   return (
     <div className="App">
-      <div className="Authentication">Auth me up</div>
+      <Authentication selectedDepartment={selectedDepartment} setSelectedDepartment={handleDepartmentChange}/>
       <div className="Text-Editor">
         <MyEditor 
           articleBody={articleBody} 
           articleSubject={articleSubject} 
           setArticleBody={setArticleBody}
           setArticleSubject={setArticleSubject}
+          handleTabKeyPress={handleEditorKeyPress}
         />
       </div>
       <button onClick={() => postFunctions.createNewArticle(

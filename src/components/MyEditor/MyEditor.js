@@ -8,6 +8,7 @@ const MyEditor = (props) => {
 	const articleSubject = props.articleSubject;
 	const setArticleBody = props.setArticleBody;
 	const setArticleSubject = props.setArticleSubject;
+	const handleTabKeyPress = props.handleTabKeyPress;
 
 	const handleBodyChange = (event) => {
 		setArticleBody(event.target.value);
@@ -19,8 +20,27 @@ const MyEditor = (props) => {
 
 	return (
 		<div className="Article-input">
-			<textarea id="article-subject" placeholder='Article subject line' value={articleSubject} onChange={handleSubjectChange}></textarea>
-			<textarea id="article-body" placeholder='Article body' value={articleBody} onChange={handleBodyChange} rows="10"></textarea>
+			<textarea 
+				id="article-subject"
+				placeholder='Article subject line'
+				value={articleSubject}
+				onChange={handleSubjectChange}
+				onKeyDown={handleTabKeyPress}
+				spellCheck="false"
+				autoCorrect="false"
+			>
+			</textarea>
+			<textarea
+				id="article-body"
+				placeholder='Article body'
+				value={articleBody}
+				onChange={handleBodyChange}
+				rows="10"
+				onKeyDown={handleTabKeyPress}
+				spellCheck="false"
+				autoCorrect="false"
+			>
+			</textarea>
 			<button onClick={() => console.log(articleBody)}>Test button</button>
 		</div>
 	)
