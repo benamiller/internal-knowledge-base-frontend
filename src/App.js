@@ -17,6 +17,7 @@ function App() {
 
   const [articleList, setArticleList] = useState([]);
   
+  const [selectedArticleForComments, setSelectedArticleForComments] = useState(1);
   const [comments, setComments] = useState([]);
 
   const [selectedDepartment, setSelectedDepartment] = useState('ENGINEERING');
@@ -49,6 +50,12 @@ function App() {
   return (
     <div className="App">
       <Authentication selectedDepartment={selectedDepartment} setSelectedDepartment={handleDepartmentChange}/>
+      <div className="FetchArticles">
+        <button onClick={getArticlesForSelectedDepartment}>
+          GET ARTICLES
+        </button>
+      </div>
+
       <div className="Text-Editor">
         <MyEditor 
           articleBody={articleBody} 
@@ -59,15 +66,11 @@ function App() {
         />
       </div>
 
-
-      <button onClick={getArticlesForSelectedDepartment}>
-        GET ARTICLES
-      </button>
-
-
       <br />
       <input type="radio" value="ENGINEERING" name="department" onChange={handleArticleTypeChange}/> Engineering
       <input type="radio" value="MARKETING" name="department" onChange={handleArticleTypeChange}/> Marketing
+      <input type="radio" value="SALES" name="department" onChange={handleArticleTypeChange}/> Sales
+      <input type="radio" value="Data Science" name="department" onChange={handleArticleTypeChange}/> Data Science
       <br />
 
       <button onClick={() => postFunctions.createNewArticle(
