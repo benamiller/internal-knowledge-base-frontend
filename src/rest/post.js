@@ -1,5 +1,5 @@
 const postFunctions = {
-	createNewArticle(articleSubject, articleBody, authorizedRole, isComplete) {
+	createNewArticle(articleSubject, articleBody, authorizedRole, readStatus) {
 
 		console.log("POSTING new article");
 
@@ -10,7 +10,7 @@ const postFunctions = {
 			"articleSubject": articleSubject,
 			"articleBody": articleBody,
 			"authorizedRole": authorizedRole,
-			"isComplete": isComplete
+			"readStatus": readStatus
 		});
 
 		var requestOptions = {

@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import MyEditor from './components/MyEditor/MyEditor';
 import postFunctions from './rest/post';
+import getFunctions from './rest/get';
 import { useState } from 'react';
 import { Editor, EditorState } from 'draft-js';
 import Authentication from './components/Authentication/Authentication';
@@ -20,8 +21,14 @@ function App() {
 
   const [selectedDepartment, setSelectedDepartment] = useState('ENGINEERING');
 
+  const [articleType, setArticleType] = useState(selectedDepartment);
+
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value);
+  }
+
+  const handleArticleTypeChange = (event) => {
+    setArticleType(event.target.value);
   }
 
   const handleEditorKeyPress = (event) => {
@@ -43,15 +50,22 @@ function App() {
           handleTabKeyPress={handleEditorKeyPress}
         />
       </div>
+      <button onClick={() => getFunctions.getArticlesByDepartment(selectedDepartment)}>
+        GET ARTICLES
+      </button>
+      <br />
+      <input type="radio" value="ENGINEERING" name="department" onChange={handleArticleTypeChange}/> Engineering
+      <input type="radio" value="MARKETING" name="department" onChange={handleArticleTypeChange}/> Marketing
+      <br />
+
       <button onClick={() => postFunctions.createNewArticle(
           articleSubject,
           articleBody,
-          "ENGINEER",
-          1
+          articleType,
+          "F"
       )}>
-        Button
+        POST NEW ARTICLE
       </button>
-      My Editor above
     </div>
   );
 }

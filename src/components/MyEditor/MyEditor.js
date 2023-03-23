@@ -41,7 +41,6 @@ const MyEditor = (props) => {
 				autoCorrect="false"
 			>
 			</textarea>
-			<button onClick={() => console.log(articleBody)}>Test button</button>
 		</div>
 	)
 }
