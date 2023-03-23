@@ -18,7 +18,7 @@ const MyEditor = (props) => {
 	return (
 		<div className="Article-input">
 			<textarea id="article-subject" placeholder='Article subject line' value={articleSubject} onChange={handleSubjectChange}></textarea>
-			<textarea id="article-body" placeholder='Article body' value={articleBody} onChange={handleBodyChange}></textarea>
+			<textarea id="article-body" placeholder='Article body' value={articleBody} onChange={handleBodyChange} rows="10"></textarea>
 			<button onClick={() => console.log(articleBody)}>Test button</button>
 		</div>
 	)

@@ -11,13 +11,11 @@ textarea {
 }
 
 #article-subject {
-  height: 60px;
   width: 60%;
   resize: none;
 }
 
 #article-body {
-  height: 300px;
   width: 60%;
   resize: none;
   background-color: black;
