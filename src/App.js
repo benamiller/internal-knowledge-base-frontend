@@ -10,17 +10,27 @@ function App() {
     () => EditorState.createEmpty(),
   );
 
+  const [articleBody, setArticleBody] = useState('');
+	const [articleSubject, setArticleSubject] = useState('');
+
+  const [articles, setArticles] = useState([]);
+
   return (
     <div className="App">
       <div className="Authentication">Auth me up</div>
       <div className="Text-Editor">
-        <MyEditor editorState={editorState} setEditorState={setEditorState}/>
+        <MyEditor 
+          articleBody={articleBody} 
+          articleSubject={articleSubject} 
+          setArticleBody={setArticleBody}
+          setArticleSubject={setArticleSubject}
+        />
       </div>
       <button onClick={() => postFunctions.createNewArticle(
-          "SUBJECT",
-          editorState.getCurrentContent().getPlainText('\u0001'),
+          articleSubject,
+          articleBody,
           "ENGINEER",
-          false
+          1
       )}>
         Button
       </button>

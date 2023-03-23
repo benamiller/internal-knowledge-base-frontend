@@ -4,8 +4,10 @@ import 'draft-js/dist/Draft.css';
 import './MyEditor.css';
 
 const MyEditor = (props) => {
-	const [articleBody, setArticleBody] = useState('');
-	const [articleSubject, setArticleSubject] = useState('');
+	const articleBody = props.articleBody;
+	const articleSubject = props.articleSubject;
+	const setArticleBody = props.setArticleBody;
+	const setArticleSubject = props.setArticleSubject;
 
 	const handleBodyChange = (event) => {
 		setArticleBody(event.target.value);
