@@ -31,6 +31,10 @@ function App() {
     setArticleType(event.target.value);
   }
 
+  const getArticlesForSelectedDepartment = async () => {
+    console.log(await getFunctions.getArticlesByDepartment(selectedDepartment));
+  }
+
   const handleEditorKeyPress = (event) => {
     if (event.key == 'Tab') {
       event.preventDefault();
@@ -50,9 +54,13 @@ function App() {
           handleTabKeyPress={handleEditorKeyPress}
         />
       </div>
-      <button onClick={() => getFunctions.getArticlesByDepartment(selectedDepartment)}>
+
+
+      <button onClick={getArticlesForSelectedDepartment}>
         GET ARTICLES
       </button>
+
+
       <br />
       <input type="radio" value="ENGINEERING" name="department" onChange={handleArticleTypeChange}/> Engineering
       <input type="radio" value="MARKETING" name="department" onChange={handleArticleTypeChange}/> Marketing
@@ -66,6 +74,13 @@ function App() {
       )}>
         POST NEW ARTICLE
       </button>
+
+      <div className="Articles">
+        {/* <ul>
+        {articles.forEach(a => <li>{a.articleSubject}, {a.articleBody}</li>)}
+        </ul> */}
+
+      </div>
     </div>
   );
 }
