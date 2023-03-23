@@ -1,22 +1,25 @@
-div.DraftEditor-root {
-    border: 1px solid #000;
-    background-color: #a3c9e6;
-    height: 200px;
-    width: 300px;
-    overflow-y: auto;
-  }
+.Article-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  div.DraftEditor-editorContainer,
-  div.public-DraftEditor-content {
-    height: 100%;
-  }
+textarea {
+  font-size: 1.1rem;
+  padding: 0.3rem;
+}
 
-  textarea {
-    width: 50%;
-    height: 200px;
-    resize: none;
-    background-color: black;
-    color: #49eb4e;
-    font-size: 1.1rem;
-    padding: 0.3rem;
-  }
+#article-subject {
+  height: 60px;
+  width: 60%;
+  resize: none;
+}
+
+#article-body {
+  height: 300px;
+  width: 60%;
+  resize: none;
+  background-color: black;
+  color: #49eb4e;
+}

@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import './MyEditor.css';
 
 const MyEditor = (props) => {
+	const [articleBody, setArticleBody] = useState('');
+	const [articleSubject, setArticleSubject] = useState('');
+
+	const handleBodyChange = (event) => {
+		setArticleBody(event.target.value);
+	}
+
+	const handleSubjectChange = (event) => {
+		setArticleSubject(event.target.value);
+	}
 
 	return (
-		<textarea placeholder='Article body'></textarea>
+		<div className="Article-input">
+			<textarea id="article-subject" placeholder='Article subject line' value={articleSubject} onChange={handleSubjectChange}></textarea>
+			<textarea id="article-body" placeholder='Article body' value={articleBody} onChange={handleBodyChange}></textarea>
+			<button onClick={() => console.log(articleBody)}>Test button</button>
+		</div>
 	)
 }
 
