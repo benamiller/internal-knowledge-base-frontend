@@ -1,0 +1,13 @@
+.ArticleItem {
+    padding: 1.4rem;
+    margin: 0.4rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    min-width: 200px;
+    height: 120px;
+}
+
+.darkened {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px dashed black;
+}

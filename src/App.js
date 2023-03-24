@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import MyEditor from './components/MyEditor/MyEditor';
+import Article from './components/Article/Article';
 import postFunctions from './rest/post';
 import getFunctions from './rest/get';
 import { useState } from 'react';
@@ -49,41 +50,63 @@ function App() {
 
   return (
     <div className="App">
-      <Authentication selectedDepartment={selectedDepartment} setSelectedDepartment={handleDepartmentChange}/>
-      <div className="FetchArticles">
-        <button onClick={getArticlesForSelectedDepartment}>
-          GET ARTICLES
-        </button>
+      <div className="Split ArticleSection">
+        
+        <Authentication selectedDepartment={selectedDepartment} setSelectedDepartment={handleDepartmentChange}/>
+        
+        <div className="FetchArticles">
+          <button onClick={getArticlesForSelectedDepartment}>
+            GET ARTICLES
+          </button>
+        </div>
+
+        <div className="Text-Editor">
+          <MyEditor 
+            articleBody={articleBody} 
+            articleSubject={articleSubject} 
+            setArticleBody={setArticleBody}
+            setArticleSubject={setArticleSubject}
+            handleTabKeyPress={handleEditorKeyPress}
+          />
+        </div>
+
+        <div className="Department-Selection">
+          <input type="radio" value="ENGINEERING" name="department" onChange={handleArticleTypeChange}/> Engineering
+          <input type="radio" value="MARKETING" name="department" onChange={handleArticleTypeChange}/> Marketing
+          <input type="radio" value="SALES" name="department" onChange={handleArticleTypeChange}/> Sales
+          <input type="radio" value="Data Science" name="department" onChange={handleArticleTypeChange}/> Data Science
+
+          <br />
+
+          <button onClick={() => postFunctions.createNewArticle(
+            articleSubject,
+            articleBody,
+            articleType,
+            "F"
+          )}>
+            POST NEW ARTICLE
+          </button>
+        </div>
+
+        <div className="Articles">
+          {articleList.map((article) => {
+            return (
+              <Article
+                key={article.articleID}
+                articleID={article.articleID}
+                articleSubject={article.articleSubject}
+                articleBody={article.articleBody}
+                handleDeletion={() => console.log("delete")}
+                handleRead={() => console.log("read")}
+                handleUnread={() => console.log("unread")}
+                handleArticleClick={handleArticleClick}
+              />
+            );
+          })}
+        </div>
       </div>
-
-      <div className="Text-Editor">
-        <MyEditor 
-          articleBody={articleBody} 
-          articleSubject={articleSubject} 
-          setArticleBody={setArticleBody}
-          setArticleSubject={setArticleSubject}
-          handleTabKeyPress={handleEditorKeyPress}
-        />
-      </div>
-
-      <br />
-      <input type="radio" value="ENGINEERING" name="department" onChange={handleArticleTypeChange}/> Engineering
-      <input type="radio" value="MARKETING" name="department" onChange={handleArticleTypeChange}/> Marketing
-      <input type="radio" value="SALES" name="department" onChange={handleArticleTypeChange}/> Sales
-      <input type="radio" value="Data Science" name="department" onChange={handleArticleTypeChange}/> Data Science
-      <br />
-
-      <button onClick={() => postFunctions.createNewArticle(
-          articleSubject,
-          articleBody,
-          articleType,
-          "F"
-      )}>
-        POST NEW ARTICLE
-      </button>
-
-      <div className="Articles">
-        {articleList.map(a => <li key={a.articleID} onClick={() => handleArticleClick(a.articleID)}>{a.articleBody}</li>)}
+      <div className="Split CommentSection">
+        Comments
       </div>
     </div>
   );
