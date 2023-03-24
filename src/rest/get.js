@@ -7,17 +7,22 @@ const getFunctions = {
           
         const result = await (await fetch("http://localhost:8080/article/" + department, requestOptions)).text();
         const parsedResult = await JSON.parse(result);
-            // .then(response => response.text())
-            // .then(result => console.log(result))
-            // .catch(error => console.log('error', error));
 
+        console.log(parsedResult);
         
-
         return parsedResult;
 	},
 
-	getCommentsByArticleID(articleID) {
-		console.log("hey");
+	async getCommentsByArticleID(articleID) {
+		var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+        
+        const result = await (await fetch("http://localhost:8080/comment/" + articleID, requestOptions)).text();
+        const parsedResult = await JSON.parse(result);
+
+        return parsedResult;          
 	}
 }
 

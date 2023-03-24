@@ -8,14 +8,12 @@ const Article = (props) => {
     const handleDeletion = props.handleDeletion;
     const handleRead = props.handleRead;
     const handleUnread = props.handleUnread;
-    const 
-
+    const handleArticleClick = props.handleArticleClick;
 
     return (
         <div 
         className={`ArticleItem ${readStatus == "T" ? "darkened" : ""}`} 
         onClick={() => handleArticleClick(articleID)}>
-            <p>{readStatus}</p>
             <p>{articleSubject.length > 20 ? articleSubject.substring(0, 20) + "..." : articleSubject}</p>
             <p>{articleBody.length > 30 ? articleBody.substring(0, 30) + "..." : articleBody}</p>
             <p>{readStatus}</p>

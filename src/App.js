@@ -37,8 +37,10 @@ function App() {
     setArticleList(await getFunctions.getArticlesByDepartment(selectedDepartment));
   }
 
-  const handleArticleClick = (articleID) => {
+  const handleArticleClick = async (articleID) => {
     console.log(articleID);
+    setSelectedArticleForComments(articleID);
+    setComments(await getFunctions.getCommentsByArticleID(articleID));
   }
 
   const handleEditorKeyPress = (event) => {
@@ -107,6 +109,12 @@ function App() {
       </div>
       <div className="Split CommentSection">
         Comments
+        <br />
+        {comments.map((comment) => {
+          return (
+            comment.commentBody
+          );
+        })}
       </div>
     </div>
   );
