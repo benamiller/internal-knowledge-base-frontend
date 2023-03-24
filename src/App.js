@@ -91,13 +91,15 @@ function App() {
         </div>
 
         <div className="Articles">
-          {articleList.map((article) => {
+          {articleList.sort((a,b) => a.readStatus > b.readStatus ? 1 : -1).map((article) => {
             return (
               <Article
                 key={article.articleID}
                 articleID={article.articleID}
                 articleSubject={article.articleSubject}
                 articleBody={article.articleBody}
+                readStatus={article.readStatus}
+                selectedArticleForComments={selectedArticleForComments}
                 handleDeletion={() => console.log("delete")}
                 handleRead={() => console.log("read")}
                 handleUnread={() => console.log("unread")}
