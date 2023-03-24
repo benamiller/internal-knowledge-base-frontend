@@ -112,11 +112,13 @@ function App() {
       <div className="Split CommentSection">
         Comments
         <br />
-        {comments.map((comment) => {
-          return (
-            comment.commentBody
-          );
-        })}
+        <ul>
+          {comments.map((comment) => {
+            return (
+              <li key={comment.commentID}>{comment.commentBody}</li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
