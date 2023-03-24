@@ -3,6 +3,7 @@ import "./Authentication.css";
 const Authentication = (props) => {
     const selectedDepartment = props.selectedDepartment;
     const setSelectedDepartment = props.setSelectedDepartment;
+    const onDepartmentChange = props.onDepartmentChange;
 
     return (
         <div className="Authentication">

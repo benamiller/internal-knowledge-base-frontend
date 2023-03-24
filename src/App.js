@@ -43,6 +43,20 @@ function App() {
     setComments(await getFunctions.getCommentsByArticleID(articleID));
   }
 
+  const handleDeletion = async (articleID) => {
+    if (window.confirm("Are you sure you wish to delete this article?") == true) {
+      await postFunctions.deleteArticleByID(articleID);
+    }
+  }
+
+  const handleRead = async (articleID) => {
+    await postFunctions.setArticleRead(articleID);
+  }
+
+  const handleUnread = async (articleID) => {
+    await postFunctions.setArticleUnread(articleID);
+  }
+
   const handleEditorKeyPress = (event) => {
     if (event.key == 'Tab') {
       event.preventDefault();
@@ -54,7 +68,10 @@ function App() {
     <div className="App">
       <div className="Split ArticleSection">
         
-        <Authentication selectedDepartment={selectedDepartment} setSelectedDepartment={handleDepartmentChange}/>
+        <Authentication 
+          selectedDepartment={selectedDepartment}
+          setSelectedDepartment={handleDepartmentChange}
+        />
         
         <div className="FetchArticles">
           <button onClick={getArticlesForSelectedDepartment}>
@@ -100,9 +117,9 @@ function App() {
                 articleBody={article.articleBody}
                 readStatus={article.readStatus}
                 selectedArticleForComments={selectedArticleForComments}
-                handleDeletion={() => console.log("delete")}
-                handleRead={() => console.log("read")}
-                handleUnread={() => console.log("unread")}
+                handleDeletion={handleDeletion}
+                handleRead={handleRead}
+                handleUnread={handleUnread}
                 handleArticleClick={handleArticleClick}
               />
             );

@@ -15,8 +15,8 @@ const Article = (props) => {
         <div 
         className={`ArticleItem ${readStatus == "T" ? "darkened" : ""} ${selectedArticleForComments == articleID ? "selected" : ""}`} 
         onClick={() => handleArticleClick(articleID)}>
-            <p>{articleSubject.length > 20 ? articleSubject.substring(0, 20) + "..." : articleSubject}</p>
-            <p>{articleBody.length > 30 ? articleBody.substring(0, 30) + "..." : articleBody}</p>
+            <p>{articleSubject.length > 20 && selectedArticleForComments != articleID ? articleSubject.substring(0, 20) + "..." : articleSubject}</p>
+            <p>{articleBody.length > 30 && selectedArticleForComments != articleID ? articleBody.substring(0, 30) + "..." : articleBody}</p>
             <button onClick={() => handleDeletion(articleID)}>Delete</button>
             <button onClick={() => handleRead(articleID)}>Mark Read</button>
             <button onClick={() => handleUnread(articleID)}>Mark Unread</button>
